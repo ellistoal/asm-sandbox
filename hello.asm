@@ -1,5 +1,3 @@
-section .data
-    text db "mommy pancake",10
     
 section .text
 global _start
