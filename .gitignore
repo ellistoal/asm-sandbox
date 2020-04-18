@@ -1,0 +1,23 @@
+# Vim swap files ignore
+*.swp
+
+# Crud from autoreconf
+aclocal.m4
+configure
+compile
+config.log
+config.status
+install-sh
+Makefile
+Makefile.in
+Makefile.install
+missing
+output.*
+requests
+traces.*
+*.o
+*.guess
+*.sub
+
+# Exclude binaries
+hello
