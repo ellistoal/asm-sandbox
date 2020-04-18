@@ -9,17 +9,6 @@ section .text
 global printhello
 
 printhello:
-    ; making sys call to sys_write
-    mov rax, SYS_WRITE
-    mov rdi, 1
-    mov rsi, mommy
-    mov rdx, 14
-    syscall
-
-    ; making sys call to sys_write
-    mov rax, SYS_WRITE
-    mov rdi, 1
-    mov rsi, fortnite
-    mov rdx, 16
-    syscall
+    sys_write_stdout mommy, 14
+    sys_write_stdout fortnite, 16
     ret
