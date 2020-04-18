@@ -6,7 +6,7 @@ LD_FLAGS= -lSystem -e _start
 NASMFLAGS=-f macho64
 else
 NASM = /usr/bin/nasm
-LD_FLAGS= --nmagic -m elf_i386 --script=os.lds
+LD_FLAGS=
 NASMFLAGS= -f elf64 -F dwarf -g -w+all
 endif
 
