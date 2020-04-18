@@ -28,7 +28,6 @@
 ; param 1 - byte buffer
 ; param 2 - length to display
 ;
-; TODO figure out size dynamically
 %macro sys_write_stdout 2
     mov rax, SYS_WRITE
     mov rdi, STDOUT
