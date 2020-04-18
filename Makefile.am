@@ -1,17 +1,24 @@
-NASM = /usr/bin/nasm
 LD   = /usr/bin/ld
 
-bin_PROGRAMS = hello$(EXEEXT)
-hello_SOURCES = hello.asm util.asm
-hello_OBJS = hello.o util.o
-hello_NASMFLAGS = @PACKAGE_NASMFLAGS@
-hello_LDFLAGS = @PACKAGE_LDFLAGS@
+if OSX
+NASM = /usr/local/bin/nasm
+LD_FLAGS= -lSystem -e _start
+NASMFLAGS=-f macho64
+else
+NASM = /usr/bin/nasm
+LD_FLAGS= --nmagic -m elf_i386 --script=os.lds
+NASMFLAGS= -f elf64 -F dwarf -g -w+all
+endif
 
-.asm.o:
-	$(NASM) $(hello_NASMFLAGS) $< -o $@
+bin_PROGRAMS = hello$(EXEEXT)
+hello_SOURCES = syscall.asm util.asm hello.asm 
+hello_OBJS = hello.o util.o syscall.o
+
+.asm.o: $(hellow_SOURCES)
+	$(NASM) $(NASMFLAGS) $^ -o $@
 
 hello$(EXEEXT): $(hello_OBJS) 
-	$(LD) $(LDFLAGS) $^ -o $@
+	$(LD) $(LD_FLAGS) $^ -o $@
 
 clean:
 	rm -rf $(hello_OBJS) $(bin_PROGRAMS)

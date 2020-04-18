@@ -1,4 +1,7 @@
-    
+; nasm -f macho64 hello.asm -o hello.o
+; ld -lSystem -o hello -e _start hello.o
+%include "syscall.asm"
+
 section .text
 global _start
 
@@ -12,6 +15,6 @@ _start:
     
 exit:
     ; making sys call to sys_exit
-    mov rax, 60
+    mov rax, SYS_EXIT
     mov rdi, 0
     syscall

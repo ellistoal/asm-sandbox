@@ -16,6 +16,8 @@ output.*
 requests
 traces.*
 *.o
+*.guess
+*.sub
 
 # Exclude binaries
 hello

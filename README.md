@@ -9,3 +9,9 @@ autoreconf -i
 ./configure
 make
 ```
+
+# Project Cleanup
+
+```
+make maintainer-clean
+```

@@ -1,0 +1,4 @@
+%ifidn __OUTPUT_FORMAT__, macho64
+%define SYS_EXIT  0x2000001
+%define SYS_WRITE 0x2000004
+%endif
