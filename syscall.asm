@@ -10,7 +10,6 @@
 %define SYS_WRITE 1
 %endif
 
-
 %macro sys_exit 1 
     mov rax, SYS_EXIT
     mov rdi, %1
