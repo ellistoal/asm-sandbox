@@ -23,15 +23,35 @@
     syscall
 %endmacro
 
-; Attempts to write nbyte (param 2) of data to the object
-; refernced to stdout from the buffer pointed to by param 1.
-; param 1 - byte buffer
-; param 2 - length to display
-;
-%macro sys_write_stdout 2
+; Attempts to write buffer (pointed to by rax - param 1) as ASCII string,
+; terminated by 0x0 to stdout from the buffer pointed to by param 1.
+%macro sys_write_stdout 0
+    sys_write STDOUT
+%endmacro
+
+; Attempts to write buffer (pointed to by rax - param 1) as ASCII string,
+; terminated by 0x0 to stderr from the buffer pointed to by param 1.
+%macro sys_write_stderr 0
+    sys_write STDERR
+%endmacro
+
+; Attempts to write buffer (pointed to by rax - param 1) as ASCII string,
+; terminated by 0x0 to output stream provided in the first parameter.
+%macro sys_write 1
+%%print:
+    push rax
+    mov rbx, 0
+%%printLoop:
+    inc rax
+    inc rbx
+    mov cl, [rax]
+    cmp cl, 0
+    jne %%printLoop
+
+    pop rsi
     mov rax, SYS_WRITE
-    mov rdi, STDOUT
-    mov rsi, %1
-    mov rdx, %2
+    mov rdi, %1
+    mov rsi, rsi
+    mov rdx, rbx
     syscall
 %endmacro
