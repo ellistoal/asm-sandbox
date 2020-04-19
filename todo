@@ -1,7 +1,7 @@
 - Add function to print integers
 - Add function to print decimals
 - Add function to display arguments
-- Build asmUnit
+- Build asmUnit - http://blog.code-cop.org/2015/08/how-to-unit-test-assembly.html
 - Study string manipulation operations
 - Study compression operations
 - Study SIMD operations
